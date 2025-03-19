@@ -67,12 +67,11 @@ def getUpdateBoat():
 
 @app.route('/updateBoat', methods=['POST'])
 def postUpdateBoat():
-    try:
-        conn.execute(text("INSERT INTO boats VALUES (:id, :name, :type, :owner_id, :rental_price)"), request.form)
-        conn.commit()
-        return render_template("update_boat.html", error=None, success="Successful")
-    except:
-        return render_template("update_boat.html", error="Failed", success=None)
+    conn.execute(text("UPDATE boats "
+        "SET name = :name, type = :type, owner_id = :owner_id, rental_price = :rental_price "
+        "WHERE id = :id"), request.form)
+    conn.commit()
+    return render_template("update_boat.html", error=None, success="Successful")
 
 
 

@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="../static/styles/styles.css">
+{% extends "base.html" %}
+{% block body %}
+    <div class="body">
+        <h1>Update Boat</h1>
+        <form action="/updateBoat" method="POST">
+            <input type="number" name="id" placeholder="ID" class="input_field"> <br>
+            <input type="text" name="name" placeholder="New Boat name" class="input_field"> <br>
+            <input type="text" name="type" placeholder="New Boat type" class="input_field"> <br>
+            <input type="number" name="owner_id" placeholder="New Owner ID" class="input_field"> <br>
+            <input type="number" name="rental_price" placeholder="New Rental price" class="input_field" step="0.01"> <br>
+            <input type="submit" value="Submit" class="input_submit">
+        </form>
+        {% if error %}
+            <h2>{{ error }}</h2>
+        {% elif success %}
+            <h2>{{ success }}</h2>
+        {% endif %}
+    </div>
+{% endblock %}
