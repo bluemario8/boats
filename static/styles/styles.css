@@ -29,24 +29,28 @@
 
 /* Boats Page Start */
 
-.search_id {
+.forms {
+    display: flex;
+}
+
+.form_by_id {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px 2px;
     background-color: #cbd2e4;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-.search_id label {
+.form_by_id label {
     font-size: 1.2rem;
     text-align: center;
 }
 
-.search_id .input {
+.form_by_id .input {
     width: 100%;
     padding: 12px 20px;
     background-color: #ffffff75;

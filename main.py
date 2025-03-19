@@ -25,13 +25,24 @@ def boats():
 
 @app.route('/boats', methods=['POST'])
 def boatsPost():
-    id = request.form["search_id"]
-    print("id: " + str(id))
-    if id != "":
-        boats = conn.execute(text(f"SELECT * FROM boats WHERE id = {id}")).all()
-    else:
-        boats = conn.execute(text("select * from boats")).all()
-    return render_template("boats.html", boats=boats[:10], id=id)
+    boats = conn.execute(text("select * from boats")).all()
+    id = ""
+    deleted = ""
+    if "search_id" in request.form.keys():
+        id = request.form["search_id"]
+        if id != "":
+            boats = conn.execute(text(f"SELECT * FROM boats WHERE id = {id}")).all()
+    elif "delete_id" in request.form.keys():
+        id = request.form["delete_id"]
+        if id != "":
+            if conn.execute(text(f"SELECT * FROM boats WHERE id = {id}")).all():
+                conn.execute(text(f"DELETE FROM boats WHERE id = {id}"))
+                conn.commit()
+                boats = conn.execute(text("select * from boats")).all()
+                deleted = True
+            else:
+                deleted = False
+    return render_template("boats.html", boats=boats[:10], id=id, deleted=deleted)
 
 
 @app.route('/createBoat', methods=['GET'])
@@ -47,6 +58,22 @@ def createBoat():
         return render_template("boat_create.html", error=None, success="Successful")
     except:
         return render_template("boat_create.html", error="Failed", success=None)
+
+
+@app.route('/updateBoat', methods=['GET'])
+def getUpdateBoat():
+    return render_template("update_boat.html")
+
+
+@app.route('/updateBoat', methods=['POST'])
+def postUpdateBoat():
+    try:
+        conn.execute(text("INSERT INTO boats VALUES (:id, :name, :type, :owner_id, :rental_price)"), request.form)
+        conn.commit()
+        return render_template("update_boat.html", error=None, success="Successful")
+    except:
+        return render_template("update_boat.html", error="Failed", success=None)
+
 
 
 if __name__ == "__main__":

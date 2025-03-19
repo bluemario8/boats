@@ -2,24 +2,37 @@
 {% extends 'base.html' %}
 {% block body %}
     <div class="body">
-        <form class="search_id" action="/boats" method="POST">
-            <label for="search_id">Search ID</label>
-            <input type="number" name="search_id" placeholder="ID" class="input">
-            <input type="submit" value="Submit" class="input_submit">
-        </form>
+        <div class="forms">
+            <form class="form_by_id" action="/boats" method="POST">
+                <label for="form_by_id">Search With ID</label>
+                <input type="number" name="search_id" placeholder="ID" class="input">
+                <input type="submit" value="Submit" class="input_submit">
+            </form>
+            <form class="form_by_id" action="/boats" method="POST">
+                <label for="form_by_id">Delete With ID</label>
+                <input type="number" name="delete_id" placeholder="ID" class="input">
+                <input type="submit" value="Submit" class="input_submit">
+            </form>
+        </div>
         {% if boats == [] %}
             <h2 class="search_result">Nothing has an id of {{id}}</h2> 
-        {% endif %}
-        {% for boat in boats %}
-                <ul>
-                    <li>{{boat[0]}}</li>
-                    <li>{{boat[1]}}</li>
-                    <li>{{boat[2]}}</li>
-                    <li>{{boat[3]}}</li>
-                    <li>{{boat[4]}}</li>
-                </ul>
+        {% else %}
+            {% if deleted == True %}
+                <h2 class="search_result">Successfully deleted a boat with id of {{id}}</h2> 
+            {% elif deleted == False %}
+                <h2 class="search_result">Nothing has an id of {{id}}</h2> 
+            {% endif %}
+            {% for boat in boats %}
+                    <ul>
+                        <li>{{boat[0]}}</li>
+                        <li>{{boat[1]}}</li>
+                        <li>{{boat[2]}}</li>
+                        <li>{{boat[3]}}</li>
+                        <li>{{boat[4]}}</li>
+                    </ul>
 
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
 
 
