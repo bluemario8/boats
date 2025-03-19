@@ -17,10 +17,21 @@ def user(name):
     return render_template("user.html", name=name)
 
 
-@app.route('/boats')
+@app.route('/boats', methods=['GET'])
 def boats():
     boats = conn.execute(text("select * from boats")).all()
-    return render_template("boats.html", boats=boats[:10])
+    return render_template("boats.html", boats=boats[:10], id=None)
+
+
+@app.route('/boats', methods=['POST'])
+def boatsPost():
+    id = request.form["search_id"]
+    print("id: " + str(id))
+    if id != "":
+        boats = conn.execute(text(f"SELECT * FROM boats WHERE id = {id}")).all()
+    else:
+        boats = conn.execute(text("select * from boats")).all()
+    return render_template("boats.html", boats=boats[:10], id=id)
 
 
 @app.route('/createBoat', methods=['GET'])
