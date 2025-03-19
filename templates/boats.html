@@ -23,12 +23,12 @@
                 <h2 class="search_result">Nothing has an id of {{id}}</h2> 
             {% endif %}
             {% for boat in boats %}
-                    <ul>
-                        <li>{{boat[0]}}</li>
-                        <li>{{boat[1]}}</li>
-                        <li>{{boat[2]}}</li>
-                        <li>{{boat[3]}}</li>
-                        <li>{{boat[4]}}</li>
+                    <ul class="boats form_by_id">
+                        <li>ID: {{boat[0]}}</li>
+                        <li>Name: {{boat[1]}}</li>
+                        <li>Type: {{boat[2]}}</li>
+                        <li>Owner ID: {{boat[3]}}</li>
+                        <li>Price: {{boat[4]}}</li>
                     </ul>
 
             {% endfor %}

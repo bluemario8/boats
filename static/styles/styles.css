@@ -2,6 +2,39 @@
     color: #222;
     margin: auto;
 }
+
+.btn {
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #4CAF50;
+}
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* Home Start */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/building.png");
+    background-size: cover;
+    height: 100vh;
+    color: #fff;
+}
+
+.hero h1 {
+    margin: 3rem;
+}
+
+/* Home End */
+
+
+/* Create Boats Start */
+
 .input_field {
     width: 100%;
     padding: 12px 20px;
@@ -26,6 +59,9 @@
 .input_submit:hover {
     background-color: #45a049;
 }
+
+/* Create Boats End */
+
 
 /* Boats Page Start */
 
@@ -65,5 +101,19 @@
     text-align: center;
     font-weight: 500;
 }
+
+.boats {
+    list-style: none;
+}
+
+.boats li {
+    width: 100%;
+    background-color: #fff;
+    padding: 6px;
+    margin: 4px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
 
 /* Boats Page End */
