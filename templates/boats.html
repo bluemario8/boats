@@ -1,17 +1,23 @@
+<link rel="stylesheet" href="../static/styles/styles.css">
 {% extends 'base.html' %}
 {% block body %}
-
+    <div class="body">
+        <form class="search_id" action="/boats" method="POST">
+            <label for="search">Search ID</label>
+            <input type="number" name="search" placeholder="ID" class="input">
+            <input type="submit" value="Submit" class="input_submit">
+        </form>
     {% for boat in boats %}
-        <ul>
-            <li>{{boat[0]}}</li>
-            <li>{{boat[1]}}</li>
-            <li>{{boat[2]}}</li>
-            <li>{{boat[3]}}</li>
-            <li>{{boat[4]}}</li>
-        </ul>
+            <ul>
+                <li>{{boat[0]}}</li>
+                <li>{{boat[1]}}</li>
+                <li>{{boat[2]}}</li>
+                <li>{{boat[3]}}</li>
+                <li>{{boat[4]}}</li>
+            </ul>
 
     {% endfor %}
-
+    </div>
 
 
 {% endblock %}
